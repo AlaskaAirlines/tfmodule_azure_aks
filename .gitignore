@@ -1,0 +1,8 @@
+.terraform
+terraform.tfstate
+*.tfstate*
+terraform.tfvars
+test.auto.tfvars
+*.backup
+.envrc
+private_ssh_key

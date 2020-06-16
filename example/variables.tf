@@ -1,0 +1,15 @@
+variable "resource_group_name" {}
+variable "team_name" {}
+variable "environment_level" {}
+variable "agents_count" {}
+variable "agents_size" {}
+variable "aks_client_id" {}
+variable "aks_client_id_secret" {}
+variable "aks_aad_client_id" {}
+variable "aks_aad_server_id" {}
+variable "aks_aad_server_id_secret" {}
+variable "public_ssh_key" {}
+variable "enable_log_analytics_workspace" {}
+variable "log_analytics_workspace_sku" {}
+variable "log_retention_in_days" {}
+variable "tags" {}
