@@ -14,8 +14,11 @@ output "public_ssh_key" {
   value = var.public_ssh_key != "" ? "" : tls_private_key.ssh.public_key_openssh
 }
 
+output "private_ssh_key_filename" {
+  value = local_file.private_key[0].filename
+}
+
 variable "public_ssh_key" {
   description = "An ssh key set in the main variables of the terraform-azurerm-aks module"
   default     = ""
 }
-
