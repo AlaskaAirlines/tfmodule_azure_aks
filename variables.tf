@@ -1,75 +1,89 @@
 variable "resource_group_name" {
   type        = string
-  description = "This is the AKS cluster target Azure Resource Group"
-  default     = ""
+  description = "Target Azure resource group in which to build the AKS cluster"
 }
 
-variable "team_name" {
+variable "cluster_prefix" {
   type        = string
-  description = "This is your Alaska Airlines team name"
-  default     = ""
+  description = "Name describing the AKS cluster"
 }
 
-variable "environment_level" {
+variable "environment_name" {
   type        = string
-  description = "This is the AKS cluster environment level"
+  description = "Environment level of the AKS cluster"
+}
+
+variable "aks_version" {
+  type        = string
+  description = "Kubernetes version of the AKS cluster"
+}
+
+variable "agent_count" {
+  type        = number
+  description = "Number of nodes to provision in the AKS node pool"
+  default     = 1
+}
+
+variable "agent_size" {
+  type        = string
+  description = "Size of nodes to provision in the AKS node pool"
+  default     = "Standard_DS2_v2"
+}
+
+variable "admin_username" {
+  type        = string
+  description = "Default username for AKS node pool agents"
+  default     = "azureuser"
+}
+
+variable "public_ssh_key" {
+  description = "SSH key for AKS node pool agents"
   default     = ""
-}
-
-variable "agents_count" {
-  default = ""
-}
-
-variable "agents_size" {
-  default = ""
 }
 
 variable "aks_client_id" {
   type        = string
-  description = "This is the client id of the SPN that will run the AKS node resource group"
-  default     = ""
+  description = "Client ID of SPN that will run the AKS node pool resource group"
 }
 
 variable "aks_client_id_secret" {
   type        = string
-  description = "This is the client secret of the SPN that will run the AKS node resource group"
-  default     = ""
+  description = "Client secret of SPN that will run the AKS node pool resource group"
 }
 
 variable "aks_aad_client_id" {
   type        = string
-  description = "This is the client id of the SPN that will act as a client to access the azure AAD for the underlying subscription"
-  default     = ""
+  description = "Client ID of SPN that will act as the client to access Azure AD"
 }
 
 variable "aks_aad_server_id" {
   type        = string
-  description = "This is the client id of the SPN that will act as a server to acquire data from the azure AAD for the underlying subscription"
-  default     = ""
+  description = "Client ID of SPN that will act as the server to acquire data from Azure AD"
 }
 
 variable "aks_aad_server_id_secret" {
   type        = string
-  description = "This is the client id of the SPN that will act as a server to acquire data from the azure AAD for the underlying subscription"
-  default     = ""
-}
-
-variable "public_ssh_key" {
-  default = ""
+  description = "Client secret of SPN that will act as the server to acquire data from Azure AD"
 }
 
 variable "enable_log_analytics_workspace" {
-  default = ""
+  type        = bool
+  description = "Enable a Log Analytics Workspace for the AKS cluster"
 }
 
 variable "log_analytics_workspace_sku" {
-  default = ""
+  type        = string
+  description = "Specifies the SKU of the Log Analytics Workspace"
+  default     = "PerGB2018"
 }
 
 variable "log_retention_in_days" {
-  default = ""
+  type        = number
+  description = "Log Analytics Workspace data retention in days"
+  default     = 30
 }
 
 variable "tags" {
-  default = ""
+  type    = map
+  default = {}
 }

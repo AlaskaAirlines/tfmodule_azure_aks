@@ -1,0 +1,19 @@
+# resource_group_name = ""
+# cluster_prefix      = ""
+# environment_name    = ""
+# aks_version         = ""
+
+# aks_client_id     = ""
+# aks_aad_client_id = ""
+# aks_aad_server_id = ""
+
+# enable_log_analytics_workspace = false
+
+# tags = {
+#   ApplicationName = ""
+#   Contact         = ""
+#   Environment     = ""
+#   InUse           = ""
+#   ProductName     = ""
+#   Team            = ""
+# }
