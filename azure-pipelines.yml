@@ -35,6 +35,8 @@ jobs:
       AZURE_TENANT_ID: $(ARM_TENANT_ID)
       AZURE_SUBSCRIPTION_ID: $(ARM_SUBSCRIPTION_ID)
       AZURE_CLIENT_SECRET: $(ARM_CLIENT_SECRET)
+      TF_VAR_aks_client_id_secret: $(TF_VAR_aks_client_id_secret)
+      TF_VAR_aks_aad_server_id_secret: $(TF_VAR_aks_aad_server_id_secret)
   
   - task: Npm@1
     displayName: 'Npm Install'
