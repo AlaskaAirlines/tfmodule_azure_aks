@@ -1,7 +1,3 @@
-terraform {
-  required_version = ">= 0.12"
-}
-
 data "azurerm_resource_group" "main" {
   name = var.resource_group_name
 }
@@ -14,8 +10,8 @@ locals {
   cluster_prefix = "${var.cluster_prefix}-${var.environment_name}-${random_id.id.hex}"
 }
 
-module "ssh-key" {
-  source         = "./modules/ssh-key"
+module "ssh_key" {
+  source         = "./modules/ssh_key"
   public_ssh_key = var.public_ssh_key == "" ? "" : var.public_ssh_key
 }
 
@@ -30,7 +26,7 @@ resource "azurerm_kubernetes_cluster" "main" {
     admin_username = var.admin_username
 
     ssh_key {
-      key_data = replace(var.public_ssh_key == "" ? module.ssh-key.public_ssh_key : var.public_ssh_key, "\n", "")
+      key_data = replace(var.public_ssh_key == "" ? module.ssh_key.public_ssh_key : var.public_ssh_key, "\n", "")
     }
   }
 

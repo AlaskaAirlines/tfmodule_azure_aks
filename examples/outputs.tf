@@ -50,10 +50,16 @@ output "aks_cluster_client_id" {
   value = module.aks.aks_cluster_client_id
 }
 
+output "kube_admin_config_raw" {
+  value     = module.aks.kube_admin_config_raw
+  sensitive = true
+}
+
 output "public_ssh_key" {
   value = module.aks.public_ssh_key
 }
 
-output "private_ssh_key_filename" {
-  value = module.aks.private_ssh_key_filename
+output "private_ssh_key" {
+  value     = module.aks.private_ssh_key
+  sensitive = true
 }

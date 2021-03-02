@@ -1,16 +1,16 @@
-# tfmodule-azure-aks
+# tfmodule_azure_aks
 
 ## Overview
 
-Alaska Airlines Terraform Module to create AKS Clusters  
+Alaska Airlines Terraform Module to create AKS Clusters
 
 To stay up to date on our latest changes, visit our [Changelog](./docs/CHANGELOG.md)
 
 ## Usage
 
 ```hcl
-module "tfmodule-azure-aks" {
-  source = "github.com/AlaskaAirlines/tfmodule-azure-aks"
+module "tfmodule_azure_aks" {
+  source = "github.com/AlaskaAirlines/tfmodule_azure_aks"
 }
 ```
 
@@ -19,7 +19,7 @@ module "tfmodule-azure-aks" {
 
 | Name | Version |
 |------|---------|
-| terraform | >= 0.12 |
+| terraform | >= 0.13 |
 
 ## Providers
 
@@ -54,21 +54,22 @@ module "tfmodule-azure-aks" {
 
 | Name | Description |
 |------|-------------|
-| aks\_cluster\_aad\_client\_app\_id | description for output\_name |
-| aks\_cluster\_aad\_server\_app\_id | description for output\_name |
-| aks\_cluster\_aad\_tenant\_id | description for output\_name |
-| aks\_cluster\_client\_id | description for output\_name |
-| aks\_cluster\_fqdn | description for output\_name |
-| aks\_cluster\_id | description for output\_name |
-| aks\_cluster\_location | description for output\_name |
-| aks\_cluster\_name | description for output\_name |
-| aks\_cluster\_outbound\_ips | description for output\_name |
-| aks\_cluster\_version | description for output\_name |
-| aks\_node\_resource\_group\_name | description for output\_name |
-| aks\_resource\_group\_id | description for output\_name |
-| aks\_resource\_group\_name | description for output\_name |
-| private\_ssh\_key\_filename | description for output\_name |
-| public\_ssh\_key | description for output\_name |
+| aks\_cluster\_aad\_client\_app\_id | n/a |
+| aks\_cluster\_aad\_server\_app\_id | n/a |
+| aks\_cluster\_aad\_tenant\_id | n/a |
+| aks\_cluster\_client\_id | n/a |
+| aks\_cluster\_fqdn | n/a |
+| aks\_cluster\_id | n/a |
+| aks\_cluster\_location | n/a |
+| aks\_cluster\_name | n/a |
+| aks\_cluster\_outbound\_ips | n/a |
+| aks\_cluster\_version | n/a |
+| aks\_node\_resource\_group\_name | Azure resource group name of the AKS node pool |
+| aks\_resource\_group\_id | Azure resource group ID of the AKS cluster |
+| aks\_resource\_group\_name | Azure resource group name of the AKS cluster |
+| kube\_admin\_config\_raw | n/a |
+| private\_ssh\_key | n/a |
+| public\_ssh\_key | n/a |
 
 <!-- END OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
 

@@ -2,7 +2,7 @@
   "branches": [
     "master"
   ],
-  "repositoryUrl": "https://github.com/AlaskaAirlines/tfmodule-azure-aks",
+  "repositoryUrl": "https://github.com/AlaskaAirlines/tfmodule_azure_aks",
   "plugins": [
     "@semantic-release/commit-analyzer",
     "@semantic-release/release-notes-generator",
