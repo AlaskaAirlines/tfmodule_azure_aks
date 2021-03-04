@@ -45,8 +45,8 @@ stages:
               ARM_CLIENT_ID: $(ARM_CLIENT_ID)
               ARM_TENANT_ID: $(ARM_TENANT_ID)
               ARM_SUBSCRIPTION_ID: $(ARM_SUBSCRIPTION_ID)
-              TF_VAR_AKS_CLIENT_ID_SECRET: $(TF_VAR_aks_client_id_secret)
-              TF_VAR_AKS_AAD_SERVER_ID_SECRET: $(TF_VAR_aks_aad_server_id_secret)
+              TF_VAR_aks_client_id_secret: $(TF_VAR_aks_client_id_secret)
+              TF_VAR_aks_aad_server_id_secret: $(TF_VAR_aks_aad_server_id_secret)
           - task: DeleteFiles@1
             inputs:
               SourceFolder: $(Build.SourcesDirectory)/examples
