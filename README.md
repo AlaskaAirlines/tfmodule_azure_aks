@@ -28,6 +28,22 @@ module "tfmodule_azure_aks" {
 | azurerm | n/a |
 | random | n/a |
 
+## Modules
+
+| Name | Source | Version |
+|------|--------|---------|
+| ssh_key | ./modules/ssh_key |  |
+
+## Resources
+
+| Name |
+|------|
+| [azurerm_kubernetes_cluster](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/kubernetes_cluster) |
+| [azurerm_log_analytics_solution](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/log_analytics_solution) |
+| [azurerm_log_analytics_workspace](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/log_analytics_workspace) |
+| [azurerm_resource_group](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/data-sources/resource_group) |
+| [random_id](https://registry.terraform.io/providers/hashicorp/random/latest/docs/resources/id) |
+
 ## Inputs
 
 | Name | Description | Type | Default | Required |
@@ -49,6 +65,7 @@ module "tfmodule_azure_aks" {
 | public\_ssh\_key | SSH key for AKS node pool agents | `string` | `""` | no |
 | resource\_group\_name | Target Azure resource group in which to build the AKS cluster | `string` | n/a | yes |
 | tags | n/a | `map` | `{}` | no |
+| unique\_id | Unique identification string for AKS cluster resources | `string` | `""` | no |
 
 ## Outputs
 
@@ -70,7 +87,6 @@ module "tfmodule_azure_aks" {
 | kube\_admin\_config\_raw | n/a |
 | private\_ssh\_key | n/a |
 | public\_ssh\_key | n/a |
-
 <!-- END OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
 
 ## Development

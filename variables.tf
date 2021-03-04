@@ -13,6 +13,12 @@ variable "environment_name" {
   description = "Environment level of the AKS cluster"
 }
 
+variable "unique_id" {
+  type        = string
+  description = "Unique identification string for AKS cluster resources"
+  default     = ""
+}
+
 variable "aks_version" {
   type        = string
   description = "Kubernetes version of the AKS cluster"
