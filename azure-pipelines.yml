@@ -9,7 +9,9 @@ variables:
 stages:
   - stage: __default
     jobs:
-      - job: Build
+      - job: null
+        displayName: Build, Test and Deploy
+        timeoutInMinutes: 130
         steps:
           - task: GoTool@0
             inputs:
@@ -29,9 +31,6 @@ stages:
             inputs:
               command: get
               arguments: -t ./...
-      - job: Test
-        timeoutInMinutes: 130
-        steps:
           - task: DownloadSecureFile@1
             inputs:
               secureFile: 28602a18-0e2e-4a9b-94ab-220ba97b039c
@@ -61,8 +60,6 @@ stages:
             inputs:
               SourceFolder: $(Build.SourcesDirectory)/examples
               Contents: "*.tfvars"
-      - job: Publish
-        steps:
           - task: Npm@1
             displayName: Npm Install
             inputs:
