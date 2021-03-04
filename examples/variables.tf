@@ -1,6 +1,7 @@
 variable "resource_group_name" {}
 variable "cluster_prefix" {}
 variable "environment_name" {}
+variable "unique_id" {}
 variable "aks_version" {}
 variable "aks_client_id" {}
 variable "aks_client_id_secret" {}

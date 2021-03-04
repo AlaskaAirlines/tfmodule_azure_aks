@@ -1,6 +1,7 @@
 # resource_group_name = ""
 # cluster_prefix      = ""
 # environment_name    = ""
+# unique_id           = ""
 # aks_version         = ""
 
 # aks_client_id     = ""

@@ -3,11 +3,12 @@ data "azurerm_resource_group" "main" {
 }
 
 resource "random_id" "id" {
-  byte_length = 2
+  byte_length = 3
 }
 
 locals {
-  cluster_prefix = "${var.cluster_prefix}-${var.environment_name}-${random_id.id.hex}"
+  unique_id      = var.unique_id == "" ? random_id.id.hex : var.unique_id
+  cluster_prefix = "${var.cluster_prefix}-${var.environment_name}-${local.unique_id}"
 }
 
 module "ssh_key" {
@@ -31,7 +32,7 @@ resource "azurerm_kubernetes_cluster" "main" {
   }
 
   default_node_pool {
-    name       = "pool${random_id.id.hex}"
+    name       = "pool${local.unique_id}"
     node_count = var.agent_count
     vm_size    = var.agent_size
   }
