@@ -20,23 +20,14 @@ stages:
             inputs:
               terraformVersion: 0.13.6
           - task: Go@0
-            displayName: Go get golint
-            inputs:
-              command: get
-              arguments: -u golang.org/x/lint/golint
-            env:
-              GO111MODULE: off
-          - task: Go@0
             displayName: Go get test dependencies
             inputs:
               command: get
-              arguments: -t ./...
+              arguments: -d
+              workingDirectory: $(Build.SourcesDirectory)/test
           - task: DownloadSecureFile@1
             inputs:
               secureFile: 28602a18-0e2e-4a9b-94ab-220ba97b039c
-          - task: DownloadSecureFile@1
-            inputs:
-              secureFile: 33d5bea2-e25e-4e92-b0db-2cb03e4435e2
           - task: CopyFiles@2
             inputs:
               SourceFolder: $(Agent.TempDirectory)
@@ -47,19 +38,19 @@ stages:
             inputs:
               command: test
               arguments: -timeout 2h -v
-              workingDirectory: test
+              workingDirectory: $(Build.SourcesDirectory)/test
             env:
               ARM_CLIENT_SECRET: $(ARM_CLIENT_SECRET)
-              AZURE_CLIENT_ID: $(ARM_CLIENT_ID)
-              AZURE_TENANT_ID: $(ARM_TENANT_ID)
-              AZURE_SUBSCRIPTION_ID: $(ARM_SUBSCRIPTION_ID)
-              AZURE_CLIENT_SECRET: $(ARM_CLIENT_SECRET)
-              TF_VAR_aks_client_id_secret: $(TF_VAR_aks_client_id_secret)
-              TF_VAR_aks_aad_server_id_secret: $(TF_VAR_aks_aad_server_id_secret)
+              ARM_CLIENT_ID: $(ARM_CLIENT_ID)
+              ARM_TENANT_ID: $(ARM_TENANT_ID)
+              ARM_SUBSCRIPTION_ID: $(ARM_SUBSCRIPTION_ID)
+              TF_VAR_AKS_CLIENT_ID_SECRET: $(TF_VAR_aks_client_id_secret)
+              TF_VAR_AKS_AAD_SERVER_ID_SECRET: $(TF_VAR_aks_aad_server_id_secret)
           - task: DeleteFiles@1
             inputs:
               SourceFolder: $(Build.SourcesDirectory)/examples
               Contents: "*.tfvars"
+            condition: always()
           - task: Npm@1
             displayName: Npm Install
             inputs:
