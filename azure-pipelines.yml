@@ -19,11 +19,11 @@ stages:
           - task: TerraformInstaller@0
             inputs:
               terraformVersion: 0.13.6
-          - task: Go@0
+          - task: Bash@3
             displayName: Go get test dependencies
             inputs:
-              command: get
-              arguments: -d
+              targetType: inline
+              script: "go mod download -x"
               workingDirectory: $(Build.SourcesDirectory)/test
           - task: DownloadSecureFile@1
             inputs:
@@ -33,11 +33,11 @@ stages:
               SourceFolder: $(Agent.TempDirectory)
               Contents: "*.tfvars"
               TargetFolder: $(Build.SourcesDirectory)/examples
-          - task: Go@0
+          - task: Bash@3
             displayName: Go test
             inputs:
-              command: test
-              arguments: -timeout 2h -v
+              targetType: inline
+              script: "go test -timeout 2h -v"
               workingDirectory: $(Build.SourcesDirectory)/test
             env:
               ARM_CLIENT_SECRET: $(ARM_CLIENT_SECRET)

@@ -11,7 +11,7 @@ install: brew
 	GO111MODULE=off go get -u golang.org/x/lint/golint
 
 test:
-	cd test; go mod download
+	cd test; go mod download -x
 	cd test; go test -timeout 2h -v
 
 .PHONY: brew install test
