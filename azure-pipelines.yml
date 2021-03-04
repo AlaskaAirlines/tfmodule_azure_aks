@@ -6,6 +6,7 @@ pool:
   vmImage: ubuntu-latest
 variables:
   - group: Terraform Module Variables
+  - group: AKS Secrets
 stages:
   - stage: __default
     jobs:
@@ -23,7 +24,7 @@ stages:
             displayName: Go get test dependencies
             inputs:
               targetType: inline
-              script: "go mod download -x"
+              script: go mod download
               workingDirectory: $(Build.SourcesDirectory)/test
           - task: DownloadSecureFile@1
             inputs:
@@ -33,11 +34,11 @@ stages:
               SourceFolder: $(Agent.TempDirectory)
               Contents: "*.tfvars"
               TargetFolder: $(Build.SourcesDirectory)/examples
-          - task: Bash@3
+          - task: Go@0
             displayName: Go test
             inputs:
-              targetType: inline
-              script: "go test -timeout 2h -v"
+              command: test
+              arguments: -timeout 2h -v
               workingDirectory: $(Build.SourcesDirectory)/test
             env:
               ARM_CLIENT_SECRET: $(ARM_CLIENT_SECRET)
