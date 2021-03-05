@@ -9,7 +9,7 @@ import (
 	"github.com/stretchr/testify/assert"
 )
 
-func TestTerraformExample(t *testing.T) {
+func TestTerraformAKS(t *testing.T) {
 	// Arrange
 	uniqueID := strings.ToLower(random.UniqueId())
 	region := "westus2"

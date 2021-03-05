@@ -27,13 +27,9 @@ stages:
               script: go mod download
               workingDirectory: $(Build.SourcesDirectory)/test
           - task: DownloadSecureFile@1
+            name: aksFixtures
             inputs:
               secureFile: 28602a18-0e2e-4a9b-94ab-220ba97b039c
-          - task: CopyFiles@2
-            inputs:
-              SourceFolder: $(Agent.TempDirectory)
-              Contents: "*.tfvars"
-              TargetFolder: $(Build.SourcesDirectory)/examples
           - task: Go@0
             displayName: Go test
             inputs:
@@ -41,17 +37,16 @@ stages:
               arguments: -timeout 2h -v
               workingDirectory: $(Build.SourcesDirectory)/test
             env:
-              ARM_CLIENT_SECRET: $(ARM_CLIENT_SECRET)
               ARM_CLIENT_ID: $(ARM_CLIENT_ID)
-              ARM_TENANT_ID: $(ARM_TENANT_ID)
+              ARM_CLIENT_SECRET: $(ARM_CLIENT_SECRET)
               ARM_SUBSCRIPTION_ID: $(ARM_SUBSCRIPTION_ID)
+              ARM_TENANT_ID: $(ARM_TENANT_ID)
+              TF_IN_AUTOMATION: 1
+              TF_CLI_ARGS_plan: -var-file=$(aksFixtures.secureFilePath)
+              TF_CLI_ARGS_apply: -var-file=$(aksFixtures.secureFilePath)
+              TF_CLI_ARGS_destroy: -var-file=$(aksFixtures.secureFilePath)
               TF_VAR_aks_client_id_secret: $(TF_VAR_aks_client_id_secret)
               TF_VAR_aks_aad_server_id_secret: $(TF_VAR_aks_aad_server_id_secret)
-          - task: DeleteFiles@1
-            inputs:
-              SourceFolder: $(Build.SourcesDirectory)/examples
-              Contents: "*.tfvars"
-            condition: always()
           - task: Npm@1
             displayName: Npm Install
             inputs:
