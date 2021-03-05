@@ -5,7 +5,6 @@ trigger:
 pool:
   vmImage: ubuntu-latest
 variables:
-  - group: Terraform Module Variables
   - group: AKS Secrets
 stages:
   - stage: __default
