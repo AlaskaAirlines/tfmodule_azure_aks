@@ -37,10 +37,10 @@ stages:
               arguments: -timeout 2h -v
               workingDirectory: $(Build.SourcesDirectory)/test
             env:
-              ARM_CLIENT_ID: $(ARM_CLIENT_ID)
-              ARM_CLIENT_SECRET: $(ARM_CLIENT_SECRET)
-              ARM_SUBSCRIPTION_ID: $(ARM_SUBSCRIPTION_ID)
-              ARM_TENANT_ID: $(ARM_TENANT_ID)
+              ARM_CLIENT_ID: $(AKS_ARM_CLIENT_ID)
+              ARM_CLIENT_SECRET: $(AKS_ARM_CLIENT_SECRET)
+              ARM_SUBSCRIPTION_ID: $(AKS_ARM_SUBSCRIPTION_ID)
+              ARM_TENANT_ID: $(AKS_ARM_TENANT_ID)
               TF_IN_AUTOMATION: 1
               TF_CLI_ARGS_plan: -var-file=$(aksFixtures.secureFilePath)
               TF_CLI_ARGS_apply: -var-file=$(aksFixtures.secureFilePath)
